@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScreenShot</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 2px;
+        /* overflow: hidden; */
+        background-color: #444;
+        color: #ddd;
+        box-sizing: border-box;
+      }
+      #container-main {
+        width: 98dvw;
+        height: 98dvh;
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+      }
+      #mainImage {
+        width: 100%;
+        max-height: calc(98dvh - 80px);
+        object-fit: contain;
+      }
+      button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        background: #222;
+        border: none;
+        color: #aaa;
+        border-radius: 8px;
+      }
+      button:hover {
+        color: #fff;
+        background: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container-main">
+      <button id="refreshButton" type="button" onclick="refreshImage()">
+        Refresh
+      </button>
+      <img id="mainImage" src="/png" alt="ScreenShot" />
+    </div>
+    <script>
+      function refreshImage() {
+        const imageElement = document.getElementById("mainImage");
+        imageElement.src = imageElement.src + "?" + new Date().getTime();
+      }
+    </script>
+  </body>
+</html>
