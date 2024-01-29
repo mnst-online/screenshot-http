@@ -1,8 +1,8 @@
 import express from "express";
-import screenshot from "screenshot-desktop";
-import { join } from "path";
 import NodeCache from "node-cache";
 import os from "os";
+import { join } from "path";
+import screenshot from "screenshot-desktop";
 
 const ttlSeconds = 0.5;
 
@@ -42,12 +42,9 @@ app.get("/png", async (_, res) => {
 const networkInterfaces = os.networkInterfaces();
 
 app.listen(port, "::", () => {
-  console.log(`Server running at port`, port);
-  Object.keys(networkInterfaces).forEach((interfaceName) => {
-    const filteredAddresses = networkInterfaces[interfaceName]?.filter(
-      (item) => item.family === "IPv4" && !item.internal,
-    );
-    if (filteredAddresses?.length)
-      return console.log(`Server IP Address: ${filteredAddresses[0].address}`);
-  });
+  console.log('Server running at port', port);
+  Object.entries(networkInterfaces)
+    .map(([, value]) => (value ?? []).filter(item => item.family === "IPv4" && !item.internal).at(0)?.address)
+    .filter(address => !!address)
+    .forEach(address => console.log(`Server IP Address: ${address}`));
 });
