@@ -52,7 +52,11 @@
     <script>
       function refreshImage() {
         const imageElement = document.getElementById("mainImage");
-        imageElement.src = imageElement.src + "?" + new Date().getTime();
+        const url = new URL(imageElement.src);
+        url.search = new URLSearchParams({
+          q: new Date().getTime().toString(),
+        }).toString();
+        imageElement.src = url.href;
       }
     </script>
   </body>
