@@ -1,0 +1,38 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+
+      - uses: volta-cli/action@v4
+        name: Setup Volta
+      - name: Print Node, NPM, Volta version
+        run: echo "Node $(node -v), NPM $(npm -v), Volta $(volta -v)"
+
+      - name: NPM install
+        run: npm ci
+        timeout-minutes: 5
+
+      - name: Build
+        run: npm run build
+        timeout-minutes: 5
+
+      - name: Build exe file
+        run: npm run exe
+        timeout-minutes: 5
+
+      # - run: npm test
+      #   timeout-minutes: 5
