@@ -26,6 +26,14 @@ jobs:
         run: npm ci
         timeout-minutes: 5
 
+      - name: Lint
+        run: npm run lint:check
+        timeout-minutes: 5
+
+      - name: Prettier
+        run: npm run format:check
+        timeout-minutes: 5
+
       - name: Build
         run: npm run build
         timeout-minutes: 5
