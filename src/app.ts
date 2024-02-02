@@ -3,6 +3,7 @@ import NodeCache from "node-cache";
 import os from "os";
 import { join } from "path";
 import screenshot from "screenshot-desktop";
+import { environment } from "./environment";
 
 const ttlSeconds = 0.5;
 
@@ -10,7 +11,7 @@ const pngCache = new NodeCache({ stdTTL: ttlSeconds, checkperiod: 120 });
 const pngCacheKey = "png";
 
 const app = express();
-const port = 3000;
+const port = environment.nodePort;
 
 app.use(express.static(join(__dirname, "public")));
 
@@ -41,7 +42,7 @@ app.get("/png", async (_, res) => {
 
 const networkInterfaces = os.networkInterfaces();
 
-app.listen(port, "::", () => {
+app.listen(port, environment.nodeHost, () => {
   console.log("Server running at port", port);
   Object.entries(networkInterfaces)
     .map(([, value]) => (value ?? []).filter(item => item.family === "IPv4" && !item.internal).at(0)?.address)
