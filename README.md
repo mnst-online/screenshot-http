@@ -29,3 +29,5 @@ npm run prepare
 ## Screenshot
 
 <img width="588" alt="Screenshot 2567-02-02 at 10 30 17" src="https://github.com/mnst-online/screenshot-http/assets/49577823/b5c3fed2-ce21-4915-87e1-bf7b60fb5ca9">
+
+![ezgif-3-b235b63af0.gif](https://github.com/mnst-online/screenshot-http/assets/49577823/29424df6-1c63-47b1-a883-5bdd89f9ce1c)
