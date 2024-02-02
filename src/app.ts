@@ -45,6 +45,6 @@ app.listen(port, "::", () => {
   console.log("Server running at port", port);
   Object.entries(networkInterfaces)
     .map(([, value]) => (value ?? []).filter(item => item.family === "IPv4" && !item.internal).at(0)?.address)
-    .filter(address => !!address)
-    .forEach(address => console.log(`Server IP Address: ${address}`));
+    .filter((address): address is string => !!address)
+    .forEach(address => console.log(`Server IP Address: ${address}:${port}`));
 });
