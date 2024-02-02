@@ -9,7 +9,13 @@
 
 ## Setup packages
 
-- `npm install`
+```bash
+# Install NPM packages
+npm install
+
+# Install Husky
+npm run prepare
+```
 
 ## Run project in development mode (nodemon)
 
